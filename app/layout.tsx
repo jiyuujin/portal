@@ -6,9 +6,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "YUMA Kitamura - Web Developer & Engineering Manager",
+  title: "YUMA Kitamura - Application Developer & Engineering Manager",
   description:
-    "Personal portfolio of YUMA Kitamura, a web developer and engineering manager specializing in frontend development with React, Flutter, and DevOps.",
+    "Personal portfolio of YUMA Kitamura, an application developer and engineering manager specializing in frontend development with React, Flutter, and DevOps.",
 };
 
 export default function RootLayout({
