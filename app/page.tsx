@@ -1,6 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import axios from "axios";
+import * as cheerio from "cheerio";
 import {
   Briefcase,
   Calendar,
@@ -9,13 +11,35 @@ import {
   Github,
   Mail,
   MapPin,
-  // BookOpen,
-  // ChevronRight,
+  BookOpen,
+  ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+interface BlogResponse {
+  title: string;
+  url: string;
+  description: string;
+}
+
+async function fetchBlogData() {
+  const { data } = await axios.get("https://blog.nekohack.me");
+  const $ = cheerio.load(data);
+  const list = $("body > main > div:nth-child(3) > ul > li");
+  const items: BlogResponse[] = [];
+  list.each((index, element) => {
+    const title = $(element).find("div > h3 > a").text();
+    const url = $(element).find("div > h3 > a").attr("href") ?? "";
+    const description = $(element).find("div > p").text();
+    items.push({ title, url, description });
+  });
+  return items;
+}
+
+export default async function Home() {
+  const items = await fetchBlogData();
+
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -599,83 +623,32 @@ export default function Home() {
         </section>
 
         {/* Blog Section */}
-        {/* <section id="blog" className="py-12 border-t">
+        <section id="blog" className="py-12 border-t">
           <h2 className="text-3xl font-bold mb-8">Latest Articles</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Badge>React</Badge>
-                    <span className="text-sm text-muted-foreground">Apr 8, 2023</span>
+            {items.slice(1, 4).map((item, key) => (
+              <Card key={key}>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <Badge>Tech Blog</Badge>
+                      <span className="text-sm text-muted-foreground">{item.description}</span>
+                    </div>
+                    <h3 className="text-xl font-semibold">{item.title}</h3>
+                    <Button variant="link" className="p-0" asChild>
+                      <Link
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Read Article
+                        <ChevronRight className="h-4 w-4 ml-1" />
+                      </Link>
+                    </Button>
                   </div>
-                  <h3 className="text-xl font-semibold">Building Accessible React Components</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Learn how to create React components that are accessible to all users, including those with
-                    disabilities.
-                  </p>
-                  <Button variant="link" className="p-0" asChild>
-                    <Link
-                      href="https://blog.nekohack.me/posts/accessible-react-components"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Read Article
-                      <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Badge>TypeScript</Badge>
-                    <span className="text-sm text-muted-foreground">Mar 15, 2023</span>
-                  </div>
-                  <h3 className="text-xl font-semibold">Advanced TypeScript Patterns</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Explore advanced TypeScript patterns and techniques to improve your code quality and developer
-                    experience.
-                  </p>
-                  <Button variant="link" className="p-0" asChild>
-                    <Link
-                      href="https://blog.nekohack.me/posts/advanced-typescript-patterns"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Read Article
-                      <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Badge>Next.js</Badge>
-                    <span className="text-sm text-muted-foreground">Feb 22, 2023</span>
-                  </div>
-                  <h3 className="text-xl font-semibold">Getting Started with Next.js 13</h3>
-                  <p className="text-sm text-muted-foreground">
-                    A comprehensive guide to getting started with Next.js 13 and its new app directory structure.
-                  </p>
-                  <Button variant="link" className="p-0" asChild>
-                    <Link
-                      href="https://blog.nekohack.me/posts/nextjs-13-guide"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Read Article
-                      <ChevronRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            ))}
           </div>
           <div className="mt-8 text-center">
             <Button variant="outline" asChild>
@@ -685,7 +658,7 @@ export default function Home() {
               </Link>
             </Button>
           </div>
-        </section> */}
+        </section>
 
         {/* Contact Section */}
         <section id="contact" className="py-12 border-t">
