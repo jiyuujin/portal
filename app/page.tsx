@@ -26,7 +26,7 @@ interface BlogResponse {
 async function fetchBlogData() {
   const { data } = await axios.get("https://blog.nekohack.me");
   const $ = cheerio.load(data);
-  const list = $("body > main > div:nth-child(3) > ul > li");
+  const list = $("#blogMain li");
   const items: BlogResponse[] = [];
   list.each((index, element) => {
     const title = $(element).find("div > h3 > a").text();
