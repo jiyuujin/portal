@@ -453,8 +453,8 @@ export default async function Home() {
             <Card className="overflow-hidden">
               <div className="aspect-video relative">
                 <Image
-                  src="/placeholder.svg?height=200&width=400"
-                  alt="Project 1"
+                  src="/projects/tracc.png?height=280&width=420"
+                  alt="Tracc"
                   fill
                   className="object-cover"
                 />
@@ -462,41 +462,43 @@ export default async function Home() {
               <CardContent className="p-6">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-xl font-semibold">jiyuujin Portal</h3>
+                    <h3 className="text-xl font-semibold">Tracc</h3>
                     <p className="text-sm text-muted-foreground">
-                      Profile website
+                      Manage all your sponsorships on a single platform.
                     </p>
                   </div>
                   <p className="text-sm">
-                    A modern, responsive website built with Next.js and Tailwind
-                    CSS. Features include a blog, team profiles, and a contact
-                    form.
+                    Tracc dramatically streamlines sponsor management for
+                    conference organizing teams. It frees you from complex
+                    administrative tasks, allowing you to focus on what truly
+                    matters.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">Next.js</Badge>
-                    <Badge variant="outline">React</Badge>
-                    <Badge variant="outline">Tailwind CSS</Badge>
-                    <Badge variant="outline">v0</Badge>
+                    <Badge variant="outline">Flutter</Badge>
+                    <Badge variant="outline">Dart</Badge>
+                    <Badge variant="outline">Firebase</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">React (partially)</Badge>
+                    <Badge variant="outline">Remix (partially)</Badge>
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled
+                      className="disabled:pointer-events-none disabled:opacity-70"
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      🔒 Code
+                    </Button>
+                    <Button size="sm" asChild>
                       <Link
                         href="https://github.com/jiyuujin/portal"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </Link>
-                    </Button>
-                    <Button size="sm" asChild>
-                      <Link
-                        href="https://yuma-kitamura.nekohack.me/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
+                        Brand Website
                       </Link>
                     </Button>
                   </div>
@@ -506,8 +508,8 @@ export default async function Home() {
             <Card className="overflow-hidden">
               <div className="aspect-video relative">
                 <Image
-                  src="/placeholder.svg?height=200&width=400"
-                  alt="Project 2"
+                  src="/projects/rocket-form.jpg?height=280&width=420"
+                  alt="Rocket Form"
                   fill
                   className="object-cover"
                 />
@@ -515,39 +517,38 @@ export default async function Home() {
               <CardContent className="p-6">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-xl font-semibold">Tech Blog</h3>
+                    <h3 className="text-xl font-semibold">Rocket Form</h3>
                     <p className="text-sm text-muted-foreground">
-                      Personal tech blog
+                      Bot management tool
                     </p>
                   </div>
                   <p className="text-sm">
-                    A blog where I share my knowledge and experiences in web
-                    development. Built with Nuxt.js and Markdown.
+                    Rocket Form is a tool that streamlines bot management. It
+                    simplifies complex tasks, enabling you to focus on what
+                    truly matters.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">TypeScript</Badge>
-                    <Badge variant="outline">Deno</Badge>
-                    <Badge variant="outline">Markdown</Badge>
+                    <Badge variant="outline">Node.js</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" asChild>
-                      <Link
-                        href="https://github.com/jiyuujin/blog"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </Link>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled
+                      className="disabled:pointer-events-none disabled:opacity-70"
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      🔒 Code
                     </Button>
                     <Button size="sm" asChild>
                       <Link
-                        href="https://blog.nekohack.me/"
+                        href="https://rocket-form.nekohack.me/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
+                        Product Website
                       </Link>
                     </Button>
                   </div>
@@ -557,8 +558,157 @@ export default async function Home() {
             <Card className="overflow-hidden">
               <div className="aspect-video relative">
                 <Image
-                  src="/placeholder.svg?height=200&width=400"
-                  alt="Project 3"
+                  src="/projects/commitment-board.png?height=280&width=420"
+                  alt="Commitment Board"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">Commitment Board</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Commitment board website for some conferences.
+                    </p>
+                  </div>
+                  <p className="text-sm">
+                    A visual dashboard to align staff roles and weekly
+                    commitments.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">Node.js</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled
+                      className="disabled:pointer-events-none disabled:opacity-70"
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      🔒 Code
+                    </Button>
+                    <Button size="sm" asChild>
+                      <Link
+                        href="https://commitment-board.nekohack.me"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Product Website
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="overflow-hidden">
+              <div className="aspect-video relative">
+                <Image
+                  src="/projects/imgo.png?height=280&width=420"
+                  alt="IMGO (Image Go)"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">IMGO (Image Go)</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Image management and optimization tool.
+                    </p>
+                  </div>
+                  <p className="text-sm">
+                    A visual dashboard to manage and optimize images
+                    efficiently.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">Node.js</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">Rust</Badge>
+                    <Badge variant="outline">Cloud Run</Badge>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled
+                      className="disabled:pointer-events-none disabled:opacity-70"
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      🔒 Code
+                    </Button>
+                    <Button size="sm" asChild>
+                      <Link
+                        href="https://imgo.nekohack.me"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Product Website
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="overflow-hidden">
+              <div className="aspect-video relative">
+                <Image
+                  src="/projects/multi-post-dash.png?height=280&width=420"
+                  alt="Multi Post Dash"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">Multi Post Dash</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Posting dashboard for some SNS.
+                    </p>
+                  </div>
+                  <p className="text-sm">
+                    A dashboard to post on multiple social networking services.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">Node.js</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" asChild>
+                      <Link
+                        href="https://github.com/jiyuujin/multi-post-dash"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </Link>
+                    </Button>
+                    <Button size="sm" asChild>
+                      <Link
+                        href="https://multi-post.nekohack.me"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Product Website
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="overflow-hidden">
+              <div className="aspect-video relative">
+                <Image
+                  src="/projects/nekohack-portal.jpg?height=280&width=420"
+                  alt="nekohack Portal"
                   fill
                   className="object-cover"
                 />
@@ -600,7 +750,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
+                        Product Website
                       </Link>
                     </Button>
                   </div>
