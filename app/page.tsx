@@ -232,15 +232,17 @@ export default async function Home() {
                   <h3 className="text-xl font-semibold">Frontend</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Badge>HTML5</Badge>
-                  <Badge>CSS3</Badge>
+                  <Badge>HTML</Badge>
+                  <Badge>CSS</Badge>
                   <Badge>JavaScript</Badge>
                   <Badge>TypeScript</Badge>
                   <Badge>React</Badge>
                   <Badge>Vue</Badge>
                   <Badge>Svelte</Badge>
+                  <Badge>Objective-C</Badge>
+                  <Badge>Swift</Badge>
                   <Badge>Java</Badge>
-                  <Badge>Scala</Badge>
+                  <Badge>Kotlin</Badge>
                   <Badge>Dart</Badge>
                   <Badge>Flutter</Badge>
                 </div>
@@ -270,16 +272,19 @@ export default async function Home() {
                 <div className="flex flex-wrap gap-2">
                   <Badge>Node.js</Badge>
                   <Badge>Express</Badge>
-                  <Badge>Supabase</Badge>
+                  <Badge>Java</Badge>
+                  <Badge>Scala</Badge>
                   <Badge>Firebase</Badge>
+                  <Badge>Supabase</Badge>
                   <Badge>GraphQL</Badge>
                   <Badge>REST API</Badge>
                   <Badge>MongoDB</Badge>
                   <Badge>PostgreSQL</Badge>
                   <Badge>AWS</Badge>
-                  <Badge>Cloudflare</Badge>
-                  <Badge>Vercel</Badge>
+                  <Badge>GCP</Badge>
                   <Badge>Netlify</Badge>
+                  <Badge>Vercel</Badge>
+                  <Badge>Cloudflare</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -321,7 +326,8 @@ export default async function Home() {
                   <Badge>Webpack</Badge>
                   <Badge>Figma</Badge>
                   <Badge>Miro</Badge>
-                  <Badge>Agile/Scrum</Badge>
+                  <Badge>Agile</Badge>
+                  <Badge>Scrum</Badge>
                 </div>
               </CardContent>
             </Card>
