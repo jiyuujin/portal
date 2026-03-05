@@ -499,7 +499,7 @@ export default async function Home() {
                     </Button>
                     <Button size="sm" asChild>
                       <Link
-                        href="https://github.com/jiyuujin/portal"
+                        href="https://brand.tracc.jp/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
