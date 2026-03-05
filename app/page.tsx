@@ -26,12 +26,12 @@ interface BlogResponse {
 async function fetchBlogData() {
   const { data } = await axios.get("https://blog.nekohack.me");
   const $ = cheerio.load(data);
-  const list = $("#blogMain li");
+  const list = $("#blogMain li article h3 a");
   const items: BlogResponse[] = [];
   list.each((index, element) => {
-    const title = $(element).find("div > h3 > a").text();
-    const url = $(element).find("div > h3 > a").attr("href") ?? "";
-    const description = $(element).find("div > p").text();
+    const title = $(element).text();
+    const url = $(element).attr("href") ?? "";
+    const description = $(element).closest("article").find("p").text();
     items.push({ title, url, description });
   });
   return items;
@@ -782,7 +782,9 @@ export default async function Home() {
                   <div className="space-y-4">
                     <div className="flex items-center gap-2">
                       <Badge>Tech Blog</Badge>
-                      <span className="text-sm text-muted-foreground">{item.description}</span>
+                      <span className="text-sm text-muted-foreground">
+                        {item.description}
+                      </span>
                     </div>
                     <h3 className="text-xl font-semibold">{item.title}</h3>
                     <Button variant="link" className="p-0" asChild>
@@ -802,7 +804,11 @@ export default async function Home() {
           </div>
           <div className="mt-8 text-center">
             <Button variant="outline" asChild>
-              <Link href="https://blog.nekohack.me" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://blog.nekohack.me"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <BookOpen className="h-4 w-4 mr-2" />
                 View All Articles
               </Link>
