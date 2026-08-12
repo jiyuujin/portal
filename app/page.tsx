@@ -213,7 +213,7 @@ export default async function Home() {
               </div>
               <div className="flex items-center gap-3">
                 <Briefcase className="h-5 w-5 text-muted-foreground" />
-                <span>Engineering Manager at nekohack inc.</span>
+                <span>Engineering Manager at nekohack</span>
               </div>
             </div>
           </div>
@@ -724,7 +724,7 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">nekohack Portal</h3>
                     <p className="text-sm text-muted-foreground">
-                      Company website for nekohack inc.
+                      Company website for nekohack
                     </p>
                   </div>
                   <p className="text-sm">
@@ -969,7 +969,7 @@ export default async function Home() {
       <footer className="border-t py-6 md:py-8">
         <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} nekohack inc. All rights reserved.
+            &copy; {new Date().getFullYear()} nekohack. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link
