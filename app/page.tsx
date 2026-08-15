@@ -566,7 +566,7 @@ export default async function Home() {
             <Card className="overflow-hidden">
               <div className="aspect-video relative">
                 <Image
-                  src="/projects/rocket-form.jpg?height=280&width=420"
+                  src="/projects/rocket-form.png?height=280&width=420"
                   alt="Rocket Form"
                   fill
                   className="object-cover"
