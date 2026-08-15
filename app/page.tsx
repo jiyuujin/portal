@@ -606,7 +606,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        Brand Website
                       </Link>
                     </Button>
                   </div>
