@@ -765,7 +765,58 @@ export default async function Home() {
             <Card className="overflow-hidden">
               <div className="aspect-video relative">
                 <Image
-                  src="/projects/nekohack-portal.jpg?height=280&width=420"
+                  src="/projects/newspaper.png?height=280&width=420"
+                  alt="nekohack Newspaper"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">nekohack Newspaper</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Daily tech website for nekohack
+                    </p>
+                  </div>
+                  <p className="text-sm">
+                    A modern, responsive website built with Next.js and Tailwind
+                    CSS. Features include a blog, team profiles, and a hub for
+                    social networking services.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">Cloudflare Workers</Badge>
+                    <Badge variant="outline">Google Gemini</Badge>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" asChild>
+                      <Link
+                        href="https://github.com/nekohack/portal"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </Link>
+                    </Button>
+                    <Button size="sm" asChild>
+                      <Link
+                        href="https://newspaper.nekohack.me"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Product Website
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="overflow-hidden">
+              <div className="aspect-video relative">
+                <Image
+                  src="/projects/nekohack-portal.png?height=280&width=420"
                   alt="nekohack Portal"
                   fill
                   className="object-cover"
