@@ -854,7 +854,7 @@ export default async function Home() {
                     </Button>
                     <Button size="sm" asChild>
                       <Link
-                        href="https://react-ui.nekohack.me"
+                        href="https://nekohack.me"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
