@@ -665,6 +665,55 @@ export default async function Home() {
             <Card className="overflow-hidden">
               <div className="aspect-video relative">
                 <Image
+                  src="/projects/deeplink-redirect.png?height=280&width=420"
+                  alt="DL (DeepLink Redirect)"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">DL (DeepLink Redirect)</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Link management and optimization tool.
+                    </p>
+                  </div>
+                  <p className="text-sm">
+                    A visual dashboard to manage and optimize links
+                    efficiently.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">Node.js</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled
+                      className="disabled:pointer-events-none disabled:opacity-70"
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      🔒 Code
+                    </Button>
+                    <Button size="sm" asChild>
+                      <Link
+                        href="https://dl.nekohack.me"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Product Website
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="overflow-hidden">
+              <div className="aspect-video relative">
+                <Image
                   src="/projects/imgo.png?height=280&width=420"
                   alt="IMGO (Image Go)"
                   fill
