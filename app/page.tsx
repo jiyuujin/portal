@@ -929,9 +929,7 @@ export default async function Home() {
               <CardContent className="p-6">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-xl font-semibold">
-                      Sheer Community
-                    </h3>
+                    <h3 className="text-xl font-semibold">Sheer Community</h3>
                     <p className="text-sm text-muted-foreground">
                       Unofficial website for Sheer Music
                     </p>
