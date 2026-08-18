@@ -674,14 +674,15 @@ export default async function Home() {
               <CardContent className="p-6">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-xl font-semibold">DL (DeepLink Redirect)</h3>
+                    <h3 className="text-xl font-semibold">
+                      DL (DeepLink Redirect)
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                       Link management and optimization tool.
                     </p>
                   </div>
                   <p className="text-sm">
-                    A visual dashboard to manage and optimize links
-                    efficiently.
+                    A visual dashboard to manage and optimize links efficiently.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="outline">Node.js</Badge>
