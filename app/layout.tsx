@@ -2,8 +2,11 @@ import type React from "react";
 import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const GA_MEASUREMENT_ID = "G-MW81V9WMHK";
 
 export const metadata = {
   title: "YUMA Kitamura - Application Developer & Engineering Manager",
@@ -31,6 +34,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
