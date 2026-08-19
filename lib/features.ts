@@ -1,1 +1,1 @@
-export const isUsedInquiryDirectly = false;
+export const isUsedInquiryDirectly = true;
