@@ -1083,9 +1083,7 @@ export default async function Home() {
         {/* Contact Section */}
         {isUsedInquiryDirectly && (
           <section id="contact" className="py-12 border-t">
-            <h2 className="text-3xl font-bold mb-8">
-              Get In Touch (Partially Under Construction)
-            </h2>
+            <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
             <div className="grid gap-8 md:grid-cols-2">
               <Card>
                 <CardContent className="p-6">
