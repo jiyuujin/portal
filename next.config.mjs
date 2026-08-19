@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // output: "export", // only for AWS
+  output: "export",
   images: {
     unoptimized: true,
   },
