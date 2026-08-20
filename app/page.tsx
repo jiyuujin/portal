@@ -1184,7 +1184,7 @@ export default async function Home() {
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              href="/terms"
               className="text-sm text-muted-foreground transition-colors hover:text-primary"
             >
               Terms of Service
