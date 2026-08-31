@@ -923,7 +923,7 @@ export default async function Home() {
               <div className="aspect-video relative">
                 <Image
                   src="/projects/sheer-community.png?height=280&width=420"
-                  alt="nekohack Portal"
+                  alt="Sheer Community"
                   fill
                   className="object-cover"
                 />
