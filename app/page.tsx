@@ -1024,7 +1024,7 @@ export default async function Home() {
             <Card className="overflow-hidden">
               <div className="aspect-video relative">
                 <Image
-                  src="/projects/jetphoto-community.jpg?height=280&width=420"
+                  src="/projects/jetphoto-community-b747.jpg?height=280&width=420"
                   alt="JetPhoto Community"
                   fill
                   className="object-cover"
