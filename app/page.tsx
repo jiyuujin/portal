@@ -974,7 +974,7 @@ export default async function Home() {
               <div className="aspect-video relative">
                 <Image
                   src="/projects/karaoke-bingo.png?height=280&width=420"
-                  alt="nekohack Portal"
+                  alt="KARAOKE BINGO"
                   fill
                   className="object-cover"
                 />
