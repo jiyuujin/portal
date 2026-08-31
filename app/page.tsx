@@ -1021,6 +1021,57 @@ export default async function Home() {
                 </div>
               </CardContent>
             </Card>
+            <Card className="overflow-hidden">
+              <div className="aspect-video relative">
+                <Image
+                  src="/projects/jetphoto-community.png?height=280&width=420"
+                  alt="JetPhoto Community"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">JetPhoto Community</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Entertainment website inspired by JetPhotos
+                    </p>
+                  </div>
+                  <p className="text-sm">
+                    Sing songs and aim for a bingo! This community-linked tool
+                    makes meetups and your regular karaoke sessions even more
+                    fun.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">Node.js</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" asChild>
+                      <Link
+                        href="https://github.com/nekohack/jetphoto-community"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </Link>
+                    </Button>
+                    <Button size="sm" asChild>
+                      <Link
+                        href="https://jetphoto-community.nekohack.me"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Product Website
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
           <div className="mt-8 text-center">
             <Button variant="outline" asChild>
