@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "role": "アプリケーションエンジニア & エンジニアリングマネージャー",
+    "description": "日本を拠点に活動するアプリケーションエンジニア兼エンジニアリングマネージャーです。React、Flutter、DevOpsを中心としたフロントエンド開発を専門としています。",
+    "viewProjects": "実績を見る"
+  },
+  "about": {
+    "title": "About Me",
+    "p1": "YUMA Kitamura です。モダンなWebアプリケーションの構築において10年以上の経験を持つアプリケーションエンジニア、エンジニアリングマネージャーです。クリーンで効率的、かつユーザーに寄り添ったインターフェースの構築に情熱を注いでいます。",
+    "p2": "現在は株式会社wevnalにてエンジニアリングマネージャーとして開発チームを率い、クライアント向け革新ソリューションの創出に取り組んでいます。React、Vue、TypeScriptによるフロントエンド開発を強みとしつつ、新しい技術やフレームワークのキャッチアップも精力的に行っています。",
+    "p3": "開発以外の活動では、オープンソースへの貢献や技術記事の執筆、コミュニティでのナレッジ共有を楽しんでいます。また、技術カンファレンス（FlutterKaigi、フロントエンドカンファレンス関西など）の運営を精力的に主導しています。",
+    "location": "京都・大阪、日本",
+    "email": "jiyuujin@nekohack.me",
+    "freelance": "フリーランス案件のご相談可能",
+    "currentRole": "nekohack エンジニアリングマネージャー"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "frontend": "フロントエンド",
+    "backend": "バックエンド",
+    "tools": "ツール & その他"
+  },
+  "experience": {
+    "title": "職務経歴",
+    "present": "現在",
+    "roles": {
+      "wevnal": {
+        "title": "Application Developer",
+        "description": "開発チームのリード、ベストプラクティスの確立、およびコード品質の向上を担当。技術的な意思決定、ジュニアエンジニアのメンタリング、ステークホルダーとの協働を通じて高品質なWebアプリケーションを提供しています。"
+      },
+      "vcube": {
+        "title": "Full-stack Developer",
+        "description": "AWS、React、TypeScriptを用いた複雑なWebアプリケーションの開発・保守を担当。デザイナーやバックエンドエンジニアと連携して新規機能の実装や改善を行い、コードレビューやメンタリングにも貢献しました。"
+      },
+      "smaregi": {
+        "title": "Full-stack Developer",
+        "description": "AWS、Vue (React)、TypeScriptを用いたWebアプリケーションの開発・保守を担当。新機能の実装および既存機能の改善を推進し、コードレビュー等を通じて品質向上に貢献しました。"
+      },
+      "ponos": {
+        "title": "Full-stack Developer",
+        "description": "ゲームタイトル『にゃんこ大戦争』のWebサイト、管理画面、アプリ内ブラウザの開発を担当（HTML/CSS/JS/Vue）。ピクセルパーフェクトな実装やクロスブラウザ互換性の確保を実施しました。"
+      }
+    }
+  },
+  "projects": {
+    "title": "主要プロジェクト",
+    "viewMore": "GitHubでもっと見る",
+    "code": "コード",
+    "brandWebsite": "ブランドサイト",
+    "productWebsite": "プロダクトサイト",
+    "items": {
+      "tracc": {
+        "subtitle": "スポンサーシップを一元管理するプラットフォーム",
+        "description": "Traccはカンファレンス主催チームのスポンサー管理を劇的に効率化します。複雑な事務作業から解放し、本質的なイベント運営に集中できるよう支援します。"
+      },
+      "lumaPortal": {
+        "subtitle": "Lumaのイベントを一元管理するプラットフォーム",
+        "description": "Luma Portalはカンファレンス主催チームのイベント管理を劇的に効率化します。複雑な事務作業から解放し、本質的な活動に集中できるようにします。"
+      },
+      "rocketForm": {
+        "subtitle": "ボット管理ツール",
+        "description": "Rocket Formはボット管理業務を効率化するツールです。複雑なタスクをシンプルにし、真に重要な作業に集中できる環境を提供します。"
+      },
+      "commitmentBoard": {
+        "subtitle": "技術カンファレンス向けコミットメントボード",
+        "description": "Commitment Boardは技術カンファレンスにおけるスタッフの役割や週ごとのコミットメントを可視化・共有するためのダッシュボードです。"
+      },
+      "deeplinkRedirect": {
+        "subtitle": "リンク管理・最適化ツール",
+        "description": "DL (DeepLink Redirect)はリンクを効率的に管理・最適化するためのビジュアルダッシュボードです。"
+      },
+      "imgo": {
+        "subtitle": "画像管理・最適化ツール",
+        "description": "IMGO（Image Go）は画像を効率的に管理・最適化するためのダッシュボードです。"
+      },
+      "newspaper": {
+        "subtitle": "AI新聞",
+        "description": "毎朝、はてなブックマークやHacker Newsのコンテンツを更新しています。"
+      },
+      "nekohackPortal": {
+        "subtitle": "nekohackコーポレートサイト",
+        "description": "Next.jsとTailwind CSSで構築されたモダンでレスポンシブなWebサイト。ブログ、チームプロフィール、SNSハブ機能を備えています。"
+      },
+      "multiPostDash": {
+        "subtitle": "複数SNS向け投稿ダッシュボード",
+        "description": "Multi Post Dashは複数のSNSへ一括投稿を行うためのダッシュボードです。"
+      },
+      "sheerCommunity": {
+        "subtitle": "シアーミュージック 非公式 ファンコミュニティ",
+        "description": "ファン同士がリアルタイムでチャットを楽しめるコミュニティアプリ。イベントやアンケートなどのコンテンツを提供しています。"
+      },
+      "karaokeBingo": {
+        "subtitle": "カラオケビンゴ",
+        "description": "シアーミュージックYouTubeチャンネルの企画でもお馴染みの歌ってビンゴを目指す、オフ会や日常のカラオケをより楽しくするためのコミュニティ連動型ツールです。"
+      },
+      "jetPhotoCommunity": {
+        "subtitle": "JetPhotos コミュニティ",
+        "description": "航空ファン向けのコミュニティ連動型エンタメツールです。"
+      }
+    }
+  },
+  "blog": {
+    "title": "最新記事",
+    "tag": "技術ブログ",
+    "readArticle": "記事を読む",
+    "viewAll": "すべての記事を見る"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "infoTitle": "連絡先情報",
+    "locationLabel": "拠点",
+    "connectTitle": "ソーシャルリンク",
+    "availabilityTitle": "お仕事のご依頼",
+    "availabilityDesc": "現在、フリーランス案件やコンサルティングのご相談を受け付けております。ご興味のあるプロジェクトがございましたらお気軽にご連絡ください。"
+  }
+}

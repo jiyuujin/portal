@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "role": "Application Engineer & Engineering Manager",
+    "description": "I am an Application Engineer and Engineering Manager based in Japan, specializing in frontend development with a focus on React, Flutter, and DevOps.",
+    "viewProjects": "View Projects"
+  },
+  "about": {
+    "title": "About Me",
+    "p1": "I am YUMA Kitamura, an Application Engineer, Engineering Manager with over 10 years of experience in building modern web applications. I am passionate about creating clean, efficient, and user-friendly interfaces.",
+    "p2": "Currently, I lead a development team as an Engineering Manager at wevnal, inc., focusing on creating innovative solutions for clients. While my core strength lies in frontend development with React, Vue, and TypeScript, I actively stay up to date with new technologies and frameworks.",
+    "p3": "Outside of development, I enjoy contributing to open source, writing technical articles, and sharing knowledge within the community. I also actively lead the organization of tech conferences such as FlutterKaigi and Frontend Conference Kansai.",
+    "location": "Kyoto / Osaka, Japan",
+    "email": "jiyuujin@nekohack.me",
+    "freelance": "Available for freelance projects",
+    "currentRole": "nekohack Engineering Manager"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools & Others"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "present": "Present",
+    "roles": {
+      "wevnal": {
+        "title": "Application Developer",
+        "description": "Responsible for leading the development team, establishing best practices, and improving code quality. Delivering high-quality web applications through technical decision-making, mentoring junior engineers, and collaborating with stakeholders."
+      },
+      "vcube": {
+        "title": "Full-stack Developer",
+        "description": "Responsible for the development and maintenance of complex web applications using AWS, React, and TypeScript. Implemented new features and improvements in collaboration with designers and backend engineers, while contributing through code reviews and mentoring."
+      },
+      "smaregi": {
+        "title": "Full-stack Developer",
+        "description": "Responsible for the development and maintenance of web applications using AWS, Vue (React), and TypeScript. Promoted new feature implementations and improvements to existing functionality, contributing to quality enhancement through code reviews and other initiatives."
+      },
+      "ponos": {
+        "title": "Full-stack Developer",
+        "description": "Responsible for the development of websites, management portals, and in-app browser views for the game title 'The Battle Cats' (HTML/CSS/JS/Vue). Executed pixel-perfect implementations and ensured cross-browser compatibility."
+      }
+    }
+  },
+  "projects": {
+    "title": "Key Projects",
+    "viewMore": "View More on GitHub",
+    "code": "Code",
+    "brandWebsite": "Brand Website",
+    "productWebsite": "Product Website",
+    "items": {
+      "tracc": {
+        "subtitle": "A platform for centralized sponsorship management",
+        "description": "Tracc dramatically streamlines sponsorship management for conference organizing teams, freeing them from complex administrative tasks so they can focus on core event operations."
+      },
+      "lumaPortal": {
+        "subtitle": "A platform for centralized event management on Luma",
+        "description": "Luma Portal dramatically streamlines event management for conference organizing teams, freeing them from complex administrative tasks so they can focus on core activities."
+      },
+      "rocketForm": {
+        "subtitle": "Bot management tool",
+        "description": "Rocket Form is a tool designed to streamline bot management operations. It simplifies complex tasks and provides an environment where you can focus on truly important work."
+      },
+      "commitmentBoard": {
+        "subtitle": "Commitment board for tech conferences",
+        "description": "Commitment Board is a dashboard for visualizing and sharing staff roles and weekly commitments at tech conferences."
+      },
+      "deeplinkRedirect": {
+        "subtitle": "Link management & optimization tool",
+        "description": "DL (DeepLink Redirect) is a visual dashboard designed to efficiently manage and optimize links."
+      },
+      "imgo": {
+        "subtitle": "Image management & optimization tool",
+        "description": "IMGO (Image Go) is a dashboard designed to efficiently manage and optimize images."
+      },
+      "newspaper": {
+        "subtitle": "Newspaper",
+        "description": "Updates content every morning from Hatena Bookmark and Hacker News."
+      },
+      "nekohackPortal": {
+        "subtitle": "nekohack Corporate Site",
+        "description": "A modern and responsive website built with Next.js and Tailwind CSS, featuring blog posts, team profiles, and social media hubs."
+      },
+      "multiPostDash": {
+        "subtitle": "Multi-SNS post dashboard",
+        "description": "Multi Post Dash is a dashboard for bulk posting across multiple social media platforms."
+      },
+      "sheerCommunity": {
+        "subtitle": "Sheer Music Unofficial Fan Community",
+        "description": "A community app where fans can enjoy real-time chat, featuring content such as events and surveys."
+      },
+      "karaokeBingo": {
+        "subtitle": "Karaoke Bingo",
+        "description": "A community-integrated tool inspired by the popular song bingo feature on the Sheer Music YouTube channel, designed to make offline meetups and everyday karaoke even more fun."
+      },
+      "jetPhotoCommunity": {
+        "subtitle": "JetPhotos Community",
+        "description": "A community-integrated entertainment tool tailored for aviation enthusiasts."
+      }
+    }
+  },
+  "blog": {
+    "title": "Latest Articles",
+    "tag": "Tech Blog",
+    "readArticle": "Read Article",
+    "viewAll": "View All Articles"
+  },
+  "contact": {
+    "title": "Contact",
+    "infoTitle": "Contact Information",
+    "locationLabel": "Location",
+    "connectTitle": "Social Links",
+    "availabilityTitle": "Work Requests",
+    "availabilityDesc": "I am currently accepting inquiries for freelance projects and consulting. If you have an interesting project, feel free to reach out."
+  }
+}
