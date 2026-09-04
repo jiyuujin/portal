@@ -7,15 +7,15 @@ import { isUsedInquiryDirectly } from "@/lib/features";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import {
+  BookOpen,
   Briefcase,
   Calendar,
+  ChevronRight,
   Code,
   ExternalLink,
   Github,
   Mail,
   MapPin,
-  BookOpen,
-  ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,6 +25,11 @@ interface BlogResponse {
   url: string;
   description: string;
 }
+
+const locales = {
+  en: () => import("@/locale/en.json").then((module) => module.default),
+  ja: () => import("@/locale/ja.json").then((module) => module.default),
+};
 
 async function fetchBlogData() {
   const { data } = await axios.get("https://blog.nekohack.me");
@@ -40,14 +45,21 @@ async function fetchBlogData() {
   return items;
 }
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ lang: "ja" | "en" }>;
+}) {
+  const { lang } = await params;
+  const getLocale = locales[lang as keyof typeof locales] ?? locales.ja;
+  const dict = await getLocale();
   const items = await fetchBlogData();
 
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href={`/${lang}`} className="flex items-center space-x-2">
             <span className="font-bold text-xl">YUMA Kitamura</span>
           </Link>
           <nav className="hidden md:flex gap-6">
@@ -55,31 +67,31 @@ export default async function Home() {
               href="#about"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              About
+              {dict.nav.about}
             </Link>
             <Link
               href="#skills"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              Skills
+              {dict.nav.skills}
             </Link>
             <Link
               href="#experience"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              Experience
+              {dict.nav.experience}
             </Link>
             <Link
               href="#projects"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              Projects
+              {dict.nav.projects}
             </Link>
             <Link
               href="#contact"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              Contact
+              {dict.nav.contact}
             </Link>
           </nav>
           <div className="flex items-center gap-2">
@@ -124,13 +136,11 @@ export default async function Home() {
                   YUMA Kitamura
                 </h1>
                 <p className="mt-2 text-xl text-muted-foreground">
-                  Application Developer & Engineering Manager
+                  {dict.hero.role}
                 </p>
               </div>
               <p className="text-lg text-muted-foreground">
-                I'm a passionate application developer and engineering manager
-                based in Japan, specializing in frontend development with React,
-                Flutter, and DevOps.
+                {dict.hero.description}
               </p>
               <div className="flex flex-wrap gap-3">
                 <Badge variant="secondary" className="px-3 py-1 text-sm">
@@ -155,7 +165,7 @@ export default async function Home() {
               <div className="flex gap-4">
                 <ChatButton />
                 <Button variant="outline" asChild>
-                  <Link href="#projects">View Projects</Link>
+                  <Link href="#projects">{dict.hero.viewProjects}</Link>
                 </Button>
               </div>
             </div>
@@ -175,46 +185,29 @@ export default async function Home() {
 
         {/* About Section */}
         <section id="about" className="py-12 border-t">
-          <h2 className="text-3xl font-bold mb-8">About Me</h2>
+          <h2 className="text-3xl font-bold mb-8">{dict.about.title}</h2>
           <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
             <div className="space-y-4">
-              <p className="text-lg">
-                Hello! I'm YUMA Kitamura, an application developer and
-                engineering manager with over 8 years of experience in building
-                modern web applications. I'm passionate about creating clean,
-                efficient, and user-friendly interfaces.
-              </p>
-              <p>
-                Currently, I work as an Engineering Manager at wevnal inc.,
-                where I lead a team of talented developers in creating
-                innovative solutions for our clients. I specialize in frontend
-                development with React, Vue, and TypeScript, but I'm always
-                eager to learn new technologies and frameworks.
-              </p>
-              <p>
-                When I'm not coding, I enjoy contributing to open-source
-                projects, writing technical articles, and sharing my knowledge
-                with the developer community. I also enthusiastically lead in
-                organizing technical conferences (FlutterKaigi, Frontend
-                Conference in Kansai region and etc).
-              </p>
+              <p className="text-lg">{dict.about.p1}</p>
+              <p>{dict.about.p2}</p>
+              <p>{dict.about.p3}</p>
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <MapPin className="h-5 w-5 text-muted-foreground" />
-                <span>Osaka, Japan</span>
+                <span>{dict.about.location}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-muted-foreground" />
-                <span>jiyuujin@nekohack.me</span>
+                <span>{dict.about.email}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Calendar className="h-5 w-5 text-muted-foreground" />
-                <span>Available for freelance work</span>
+                <span>{dict.about.freelance}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Briefcase className="h-5 w-5 text-muted-foreground" />
-                <span>Engineering Manager at nekohack</span>
+                <span>{dict.about.currentRole}</span>
               </div>
             </div>
           </div>
@@ -222,7 +215,7 @@ export default async function Home() {
 
         {/* Skills Section */}
         <section id="skills" className="py-12 border-t">
-          <h2 className="text-3xl font-bold mb-8">Skills & Technologies</h2>
+          <h2 className="text-3xl font-bold mb-8">{dict.skills.title}</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Card>
               <CardContent className="p-6">
@@ -230,7 +223,9 @@ export default async function Home() {
                   <div className="p-2 rounded-md bg-primary/10">
                     <Code className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Frontend</h3>
+                  <h3 className="text-xl font-semibold">
+                    {dict.skills.frontend}
+                  </h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Badge>HTML</Badge>
@@ -268,7 +263,9 @@ export default async function Home() {
                       <path d="M2 9h20M9 20h6M3 4h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold">Backend</h3>
+                  <h3 className="text-xl font-semibold">
+                    {dict.skills.backend}
+                  </h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Badge>Node.js</Badge>
@@ -309,11 +306,11 @@ export default async function Home() {
                       <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold">Tools & Others</h3>
+                  <h3 className="text-xl font-semibold">{dict.skills.tools}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Badge>OpenAI (ChatGPT)</Badge>
-                  <Badge>Anthoropic (Claude)</Badge>
+                  <Badge>Anthropic (Claude)</Badge>
                   <Badge>Google (Gemini)</Badge>
                   <Badge>Git</Badge>
                   <Badge>GitHub</Badge>
@@ -337,27 +334,21 @@ export default async function Home() {
 
         {/* Experience Section */}
         <section id="experience" className="py-12 border-t">
-          <h2 className="text-3xl font-bold mb-8">Work Experience</h2>
+          <h2 className="text-3xl font-bold mb-8">{dict.experience.title}</h2>
           <div className="space-y-8">
             <div className="relative pl-8 border-l-2 border-muted pb-8">
               <div className="absolute w-4 h-4 bg-primary rounded-full -left-[9px] top-1"></div>
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-xl font-semibold">
-                    Application Developer
+                    {dict.experience.roles.wevnal.title}
                   </h3>
                   <Badge variant="outline">wevnal inc.</Badge>
                   <span className="text-sm text-muted-foreground">
-                    2023 - Present
+                    2023 - {dict.experience.present}
                   </span>
                 </div>
-                <p>
-                  Leading a team of developers, establishing best practices, and
-                  ensuring code quality. Responsible for technical
-                  decision-making, mentoring junior developers, and
-                  collaborating with stakeholders to deliver high-quality web
-                  applications.
-                </p>
+                <p>{dict.experience.roles.wevnal.description}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   <Badge variant="secondary">Team Leadership</Badge>
                   <Badge variant="secondary">Scenario Development</Badge>
@@ -371,20 +362,14 @@ export default async function Home() {
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-xl font-semibold">
-                    Full-stack Developer
+                    {dict.experience.roles.vcube.title}
                   </h3>
                   <Badge variant="outline">vcube inc.</Badge>
                   <span className="text-sm text-muted-foreground">
                     2021 - 2023
                   </span>
                 </div>
-                <p>
-                  Developed and maintained complex web applications using AWS,
-                  React, and TypeScript. Collaborated with designers and backend
-                  developers to implement new features and improve existing
-                  ones. Participated in code reviews and mentored junior
-                  developers.
-                </p>
+                <p>{dict.experience.roles.vcube.description}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   <Badge variant="secondary">AWS</Badge>
                   <Badge variant="secondary">React</Badge>
@@ -398,20 +383,14 @@ export default async function Home() {
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-xl font-semibold">
-                    Full-stack Developer
+                    {dict.experience.roles.smaregi.title}
                   </h3>
                   <Badge variant="outline">smaregi inc.</Badge>
                   <span className="text-sm text-muted-foreground">
                     2019 - 2021
                   </span>
                 </div>
-                <p>
-                  Developed and maintained complex web applications using AWS,
-                  Vue (React), and TypeScript. Collaborated with designers and
-                  backend developers to implement new features and improve
-                  existing ones. Participated in code reviews and mentored
-                  junior developers.
-                </p>
+                <p>{dict.experience.roles.smaregi.description}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   <Badge variant="secondary">AWS</Badge>
                   <Badge variant="secondary">Vue</Badge>
@@ -426,20 +405,14 @@ export default async function Home() {
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-xl font-semibold">
-                    Full-stack Developer
+                    {dict.experience.roles.ponos.title}
                   </h3>
                   <Badge variant="outline">ponos inc.</Badge>
                   <span className="text-sm text-muted-foreground">
                     2016 - 2019
                   </span>
                 </div>
-                <p>
-                  Built responsive website and web application for game title
-                  “battlecats” to develop admin screens and in-app browser,
-                  using HTML, CSS, JavaScript, and Vue. Worked with designers to
-                  implement pixel-perfect designs and ensure cross-browser
-                  compatibility. Ensure compatibility.
-                </p>
+                <p>{dict.experience.roles.ponos.description}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   <Badge variant="secondary">HTML/CSS</Badge>
                   <Badge variant="secondary">JavaScript</Badge>
@@ -455,7 +428,7 @@ export default async function Home() {
 
         {/* Projects Section */}
         <section id="projects" className="py-12 border-t">
-          <h2 className="text-3xl font-bold mb-8">Featured Projects</h2>
+          <h2 className="text-3xl font-bold mb-8">{dict.projects.title}</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Card className="overflow-hidden">
               <div className="aspect-video relative">
@@ -471,20 +444,20 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">Tracc</h3>
                     <p className="text-sm text-muted-foreground">
-                      Manage all your sponsorships on a single platform.
+                      {dict.projects.items.tracc.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    Tracc dramatically streamlines sponsor management for
-                    conference organizing teams. It frees you from complex
-                    administrative tasks, allowing you to focus on what truly
-                    matters.
+                    {dict.projects.items.tracc.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="outline">Flutter</Badge>
                     <Badge variant="outline">Dart</Badge>
+                    <Badge variant="outline">TypeScript</Badge>
+                    <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Firebase</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">AWS S3</Badge>
                     <Badge variant="outline">React (partially)</Badge>
                     <Badge variant="outline">Remix (partially)</Badge>
                   </div>
@@ -496,7 +469,7 @@ export default async function Home() {
                       className="disabled:pointer-events-none disabled:opacity-70"
                     >
                       <Github className="h-4 w-4 mr-2" />
-                      🔒 Code
+                      🔒 {dict.projects.code}
                     </Button>
                     <Button size="sm" asChild>
                       <Link
@@ -505,7 +478,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Brand Website
+                        {dict.projects.brandWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -526,19 +499,17 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">Luma Portal</h3>
                     <p className="text-sm text-muted-foreground">
-                      Manage all your events on the Luma platform.
+                      {dict.projects.items.lumaPortal.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    Luma Portal dramatically streamlines event management for
-                    conference organizing teams. It frees you from complex
-                    administrative tasks, allowing you to focus on what truly
-                    matters.
+                    {dict.projects.items.lumaPortal.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">D1</Badge>
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -548,7 +519,7 @@ export default async function Home() {
                       className="disabled:pointer-events-none disabled:opacity-70"
                     >
                       <Github className="h-4 w-4 mr-2" />
-                      🔒 Code
+                      🔒 {dict.projects.code}
                     </Button>
                     <Button size="sm" asChild>
                       <Link
@@ -557,7 +528,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Brand Website
+                        {dict.projects.brandWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -578,17 +549,17 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">Rocket Form</h3>
                     <p className="text-sm text-muted-foreground">
-                      Bot management tool
+                      {dict.projects.items.rocketForm.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    Rocket Form is a tool that streamlines bot management. It
-                    simplifies complex tasks, enabling you to focus on what
-                    truly matters.
+                    {dict.projects.items.rocketForm.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">D1</Badge>
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -598,7 +569,7 @@ export default async function Home() {
                       className="disabled:pointer-events-none disabled:opacity-70"
                     >
                       <Github className="h-4 w-4 mr-2" />
-                      🔒 Code
+                      🔒 {dict.projects.code}
                     </Button>
                     <Button size="sm" asChild>
                       <Link
@@ -607,7 +578,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Brand Website
+                        {dict.projects.brandWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -628,16 +599,17 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">Commitment Board</h3>
                     <p className="text-sm text-muted-foreground">
-                      Commitment board website for some conferences.
+                      {dict.projects.items.commitmentBoard.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    A visual dashboard to align staff roles and weekly
-                    commitments.
+                    {dict.projects.items.commitmentBoard.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">D1</Badge>
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -647,7 +619,7 @@ export default async function Home() {
                       className="disabled:pointer-events-none disabled:opacity-70"
                     >
                       <Github className="h-4 w-4 mr-2" />
-                      🔒 Code
+                      🔒 {dict.projects.code}
                     </Button>
                     <Button size="sm" asChild>
                       <Link
@@ -656,7 +628,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Brand Website
+                        {dict.projects.brandWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -679,15 +651,17 @@ export default async function Home() {
                       DL (DeepLink Redirect)
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Link management and optimization tool.
+                      {dict.projects.items.deeplinkRedirect.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    A visual dashboard to manage and optimize links efficiently.
+                    {dict.projects.items.deeplinkRedirect.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">D1</Badge>
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -697,7 +671,7 @@ export default async function Home() {
                       className="disabled:pointer-events-none disabled:opacity-70"
                     >
                       <Github className="h-4 w-4 mr-2" />
-                      🔒 Code
+                      🔒 {dict.projects.code}
                     </Button>
                     <Button size="sm" asChild>
                       <Link
@@ -706,7 +680,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        {dict.projects.productWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -727,17 +701,17 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">IMGO (Image Go)</h3>
                     <p className="text-sm text-muted-foreground">
-                      Image management and optimization tool.
+                      {dict.projects.items.imgo.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    A visual dashboard to manage and optimize images
-                    efficiently.
+                    {dict.projects.items.imgo.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
-                    <Badge variant="outline">Cloudflare</Badge>
                     <Badge variant="outline">Rust</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
                     <Badge variant="outline">Cloud Run</Badge>
                   </div>
                   <div className="flex gap-2">
@@ -748,7 +722,7 @@ export default async function Home() {
                       className="disabled:pointer-events-none disabled:opacity-70"
                     >
                       <Github className="h-4 w-4 mr-2" />
-                      🔒 Code
+                      🔒 {dict.projects.code}
                     </Button>
                     <Button size="sm" asChild>
                       <Link
@@ -757,7 +731,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        {dict.projects.productWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -780,16 +754,16 @@ export default async function Home() {
                       nekohack Newspaper
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Daily tech website for nekohack
+                      {dict.projects.items.newspaper.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    A modern, responsive website built with Next.js and Tailwind
-                    CSS. Features include a blog, team profiles, and a hub for
-                    social networking services.
+                    {dict.projects.items.newspaper.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">Cloudflare Workers</Badge>
+                    <Badge variant="outline">TypeScript</Badge>
+                    <Badge variant="outline">Node.js</Badge>
+                    <Badge variant="outline">Cloudflare</Badge>
                     <Badge variant="outline">Google Gemini</Badge>
                   </div>
                   <div className="flex gap-2">
@@ -800,7 +774,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <Github className="h-4 w-4 mr-2" />
-                        Code
+                        {dict.projects.code}
                       </Link>
                     </Button>
                     <Button size="sm" asChild>
@@ -810,7 +784,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        {dict.projects.productWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -831,13 +805,11 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">nekohack Portal</h3>
                     <p className="text-sm text-muted-foreground">
-                      Company website for nekohack
+                      {dict.projects.items.nekohackPortal.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    A modern, responsive website built with Next.js and Tailwind
-                    CSS. Features include a blog, team profiles, and a hub for
-                    social networking services.
+                    {dict.projects.items.nekohackPortal.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="outline">Next.js</Badge>
@@ -853,7 +825,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <Github className="h-4 w-4 mr-2" />
-                        Code
+                        {dict.projects.code}
                       </Link>
                     </Button>
                     <Button size="sm" asChild>
@@ -863,7 +835,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        {dict.projects.productWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -884,13 +856,14 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">Multi Post Dash</h3>
                     <p className="text-sm text-muted-foreground">
-                      Posting dashboard for some SNS.
+                      {dict.projects.items.multiPostDash.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    A dashboard to post on multiple social networking services.
+                    {dict.projects.items.multiPostDash.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
                   </div>
@@ -902,7 +875,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <Github className="h-4 w-4 mr-2" />
-                        Code
+                        {dict.projects.code}
                       </Link>
                     </Button>
                     <Button size="sm" asChild>
@@ -912,7 +885,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        {dict.projects.productWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -933,15 +906,14 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">Sheer Community</h3>
                     <p className="text-sm text-muted-foreground">
-                      Unofficial website for Sheer Music
+                      {dict.projects.items.sheerCommunity.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    A place to connect with your favorite idol. A community app
-                    just for you, where fans can chat with each other in real
-                    time. Bar events, polls—it’s all right here.
+                    {dict.projects.items.sheerCommunity.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
                   </div>
@@ -953,7 +925,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <Github className="h-4 w-4 mr-2" />
-                        Code
+                        {dict.projects.code}
                       </Link>
                     </Button>
                     <Button size="sm" asChild>
@@ -963,7 +935,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        {dict.projects.productWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -984,17 +956,17 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-semibold">KARAOKE BINGO</h3>
                     <p className="text-sm text-muted-foreground">
-                      Entertainment website inspired by Sheer Music
+                      {dict.projects.items.karaokeBingo.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    Sing songs and aim for a bingo! This community-linked tool
-                    makes meetups and your regular karaoke sessions even more
-                    fun.
+                    {dict.projects.items.karaokeBingo.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">D1</Badge>
                   </div>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" asChild>
@@ -1004,7 +976,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <Github className="h-4 w-4 mr-2" />
-                        Code
+                        {dict.projects.code}
                       </Link>
                     </Button>
                     <Button size="sm" asChild>
@@ -1014,7 +986,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        {dict.projects.productWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -1033,19 +1005,22 @@ export default async function Home() {
               <CardContent className="p-6">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-xl font-semibold">JetPhoto Community</h3>
+                    <h3 className="text-xl font-semibold">
+                      JetPhoto Community
+                    </h3>
                     <p className="text-sm text-muted-foreground">
-                      Entertainment website inspired by JetPhotos
+                      {dict.projects.items.jetPhotoCommunity.subtitle}
                     </p>
                   </div>
                   <p className="text-sm">
-                    Sing songs and aim for a bingo! This community-linked tool
-                    makes meetups and your regular karaoke sessions even more
-                    fun.
+                    {dict.projects.items.jetPhotoCommunity.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">TypeScript</Badge>
                     <Badge variant="outline">Node.js</Badge>
                     <Badge variant="outline">Cloudflare</Badge>
+                    <Badge variant="outline">D1</Badge>
+                    <Badge variant="outline">AWS S3</Badge>
                   </div>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" asChild>
@@ -1055,7 +1030,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <Github className="h-4 w-4 mr-2" />
-                        Code
+                        {dict.projects.code}
                       </Link>
                     </Button>
                     <Button size="sm" asChild>
@@ -1065,7 +1040,7 @@ export default async function Home() {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Product Website
+                        {dict.projects.productWebsite}
                       </Link>
                     </Button>
                   </div>
@@ -1081,7 +1056,7 @@ export default async function Home() {
                 rel="noopener noreferrer"
               >
                 <Github className="h-4 w-4 mr-2" />
-                View More on GitHub
+                {dict.projects.viewMore}
               </Link>
             </Button>
           </div>
@@ -1089,14 +1064,14 @@ export default async function Home() {
 
         {/* Blog Section */}
         <section id="blog" className="py-12 border-t">
-          <h2 className="text-3xl font-bold mb-8">Latest Articles</h2>
+          <h2 className="text-3xl font-bold mb-8">{dict.blog.title}</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {items.slice(1, 4).map((item, key) => (
               <Card key={key}>
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     <div className="flex items-center gap-2">
-                      <Badge>Tech Blog</Badge>
+                      <Badge>{dict.blog.tag}</Badge>
                       <span className="text-sm text-muted-foreground">
                         {item.description}
                       </span>
@@ -1108,7 +1083,7 @@ export default async function Home() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Read Article
+                        {dict.blog.readArticle}
                         <ChevronRight className="h-4 w-4 ml-1" />
                       </Link>
                     </Button>
@@ -1125,7 +1100,7 @@ export default async function Home() {
                 rel="noopener noreferrer"
               >
                 <BookOpen className="h-4 w-4 mr-2" />
-                View All Articles
+                {dict.blog.viewAll}
               </Link>
             </Button>
           </div>
@@ -1134,7 +1109,7 @@ export default async function Home() {
         {/* Contact Section */}
         {isUsedInquiryDirectly && (
           <section id="contact" className="py-12 border-t">
-            <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
+            <h2 className="text-3xl font-bold mb-8">{dict.contact.title}</h2>
             <div className="grid gap-8 md:grid-cols-2">
               <Card>
                 <CardContent className="p-6">
@@ -1144,7 +1119,7 @@ export default async function Home() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-xl font-semibold mb-4">
-                    Contact Information
+                    {dict.contact.infoTitle}
                   </h3>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -1163,9 +1138,11 @@ export default async function Home() {
                         <MapPin className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium">Location</p>
+                        <p className="text-sm font-medium">
+                          {dict.contact.locationLabel}
+                        </p>
                         <p className="text-sm text-muted-foreground">
-                          Osaka, Japan
+                          {dict.about.location}
                         </p>
                       </div>
                     </div>
@@ -1173,7 +1150,7 @@ export default async function Home() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-4">
-                    Connect with Me
+                    {dict.contact.connectTitle}
                   </h3>
                   <div className="flex gap-3">
                     <Button variant="outline" size="icon" asChild>
@@ -1209,12 +1186,10 @@ export default async function Home() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">Availability</h3>
-                  <p>
-                    I'm currently available for freelance work and consulting.
-                    If you have a project that you'd like to discuss, feel free
-                    to reach out!
-                  </p>
+                  <h3 className="text-xl font-semibold mb-4">
+                    {dict.contact.availabilityTitle}
+                  </h3>
+                  <p>{dict.contact.availabilityDesc}</p>
                 </div>
               </div>
             </div>
