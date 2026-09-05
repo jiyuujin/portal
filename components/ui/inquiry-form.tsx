@@ -92,7 +92,11 @@ export function InquiryForm() {
           placeholder="Tell me about your project..."
         />
       </div>
-      <Button className="w-full" type="submit" disabled={loading}>
+      <Button
+        className="w-full bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 text-zinc-950 hover:from-amber-400 hover:to-orange-400 font-bold shadow-md shadow-orange-500/20 transition-all"
+        type="submit"
+        disabled={loading}
+      >
         {loading ? "Sending..." : "Send Message"}
       </Button>
       {status === "success" && (
