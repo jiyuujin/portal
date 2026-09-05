@@ -12,9 +12,10 @@ const ADSENSE_CLIENT_ID = "ca-pub-7095980629133842";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ lang: string }>;
+  params: Promise<{ lang?: string }>;
 }) {
-  const { lang } = await params;
+  const resolvedParams = await params;
+  const lang = resolvedParams?.lang || "ja";
   const isJa = lang === "ja";
   const baseUrl = "https://yuma-kitamura.nekohack.me";
 
@@ -56,9 +57,10 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: Promise<{ lang?: string }>;
 }) {
-  const { lang } = await params;
+  const resolvedParams = await params;
+  const lang = resolvedParams?.lang || "ja";
 
   return (
     <html lang={lang} suppressHydrationWarning>

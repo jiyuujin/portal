@@ -20,6 +20,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
+export const runtime = "edge";
+
 interface BlogResponse {
   title: string;
   url: string;
@@ -48,18 +50,23 @@ async function fetchBlogData() {
 export default async function Home({
   params,
 }: {
-  params: Promise<{ lang: "ja" | "en" }>;
+  params: Promise<{ lang?: string[] }>;
 }) {
-  const { lang } = await params;
-  const getLocale = locales[lang as keyof typeof locales] ?? locales.ja;
+  const resolvedParams = await params;
+  const rawLang = resolvedParams.lang?.[0];
+  const lang = (rawLang === "en" ? "en" : "ja") as "ja" | "en";
+
+  const getLocale = locales[lang] ?? locales.ja;
   const dict = await getLocale();
   const items = await fetchBlogData();
+
+  const langPath = resolvedParams.lang?.[0] ? `/${lang}` : "";
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 selection:bg-amber-400 selection:text-zinc-950">
       <header className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/60">
         <div className="container flex h-16 items-center justify-between">
-          <Link href={`/${lang}`} className="flex items-center space-x-2">
+          <Link href={langPath || "/"} className="flex items-center space-x-2">
             <span className="font-bold text-xl tracking-tight text-white hover:text-amber-400 transition-colors">
               YUMA Kitamura
             </span>
