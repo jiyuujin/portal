@@ -119,20 +119,6 @@ export default async function Home({
               </Button>
             </Link>
             <Link
-              href="https://bsky.app/profile/jiyuujin.bsky.social"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Bluesky"
-                className="text-zinc-300 hover:text-amber-400 hover:bg-zinc-900"
-              >
-                <ExternalLink className="h-5 w-5" />
-              </Button>
-            </Link>
-            <Link
               href="https://times.nekohack.me/"
               target="_blank"
               rel="noopener noreferrer"
@@ -1507,21 +1493,6 @@ export default async function Home({
                         aria-label="GitHub"
                       >
                         <Github className="h-5 w-5" />
-                      </Link>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      asChild
-                      className="border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-amber-400 hover:border-amber-500"
-                    >
-                      <Link
-                        href="https://bsky.app/profile/jiyuujin.bsky.social"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Bluesky"
-                      >
-                        <ExternalLink className="h-5 w-5" />
                       </Link>
                     </Button>
                     <Button
