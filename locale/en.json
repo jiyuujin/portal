@@ -103,6 +103,10 @@
       "jetPhotoCommunity": {
         "subtitle": "JetPhotos Community",
         "description": "A community-integrated entertainment tool tailored for aviation enthusiasts."
+      },
+      "pocketCommunity": {
+        "subtitle": "Pocket Community",
+        "description": "A smart pedometer app that makes every day more fun."
       }
     }
   },

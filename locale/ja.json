@@ -103,6 +103,10 @@
       "jetPhotoCommunity": {
         "subtitle": "JetPhotos コミュニティ",
         "description": "航空ファン向けのコミュニティ連動型エンタメツールです。"
+      },
+      "pocketCommunity": {
+        "subtitle": "ポケット コミュニティ",
+        "description": "毎日が楽しくなるスマート歩数計アプリ"
       }
     }
   },

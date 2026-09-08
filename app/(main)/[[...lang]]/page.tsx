@@ -348,6 +348,16 @@ const getProjects = (dict: any): Project[] => [
     siteUrl: "https://jetphoto-community.nekohack.me",
     siteLabel: dict.projects.productWebsite,
   },
+  {
+    title: "Pocket Community (Pedometer)",
+    subtitle: dict.projects.items.pocketCommunity.subtitle,
+    description: dict.projects.items.pocketCommunity.description,
+    image: "/projects/pocket-community.jpg?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare"],
+    githubUrl: "https://github.com/jiyuujin/pedometer-app",
+    siteUrl: "https://pocket-community.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
 ];
 
 export default async function Home({
