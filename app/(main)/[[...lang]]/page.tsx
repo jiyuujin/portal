@@ -299,6 +299,16 @@ const getProjects = (dict: any): Project[] => [
     siteLabel: dict.projects.productWebsite,
   },
   {
+    title: "Portal",
+    subtitle: dict.projects.items.portal.subtitle,
+    description: dict.projects.items.portal.description,
+    image: "/projects/portal.png?height=280&width=420",
+    tags: ["Next.js", "React", "Tailwind CSS", "v0"],
+    githubUrl: "https://github.com/jiyuujin/portal",
+    siteUrl: "https://yuma-kitamura.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
     title: "nekohack Portal",
     subtitle: dict.projects.items.nekohackPortal.subtitle,
     description: dict.projects.items.nekohackPortal.description,

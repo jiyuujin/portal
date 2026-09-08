@@ -84,6 +84,10 @@
         "subtitle": "AI新聞",
         "description": "毎朝、はてなブックマークやHacker Newsのコンテンツを更新しています。"
       },
+      "portal": {
+        "subtitle": "YUMA Kitamuraプロフィールサイト",
+        "description": "Next.jsとTailwind CSSで構築されたモダンでレスポンシブなWebサイト。ブログ、チームプロフィール、SNSハブ機能を備えています。"
+      },
       "nekohackPortal": {
         "subtitle": "nekohackコーポレートサイト",
         "description": "Next.jsとTailwind CSSで構築されたモダンでレスポンシブなWebサイト。ブログ、チームプロフィール、SNSハブ機能を備えています。"

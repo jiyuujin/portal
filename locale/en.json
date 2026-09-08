@@ -84,6 +84,10 @@
         "subtitle": "Newspaper",
         "description": "Updates content every morning from Hatena Bookmark and Hacker News."
       },
+      "portal": {
+        "subtitle": "YUMA Kitamura Profile Site",
+        "description": "A modern and responsive website built with Next.js and Tailwind CSS, featuring blog posts, team profiles, and social media hubs."
+      },
       "nekohackPortal": {
         "subtitle": "nekohack Corporate Site",
         "description": "A modern and responsive website built with Next.js and Tailwind CSS, featuring blog posts, team profiles, and social media hubs."
