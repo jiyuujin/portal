@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ReactNode } from "react";
 
 export const runtime = "edge";
 
@@ -26,6 +27,32 @@ interface BlogResponse {
   title: string;
   url: string;
   description: string;
+}
+
+interface SkillCategory {
+  title: string;
+  icon: ReactNode;
+  items: string[];
+}
+
+interface Experience {
+  company: string;
+  role: string;
+  period: string;
+  description: string;
+  tags: string[];
+  isCurrent?: boolean;
+}
+
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  tags: string[];
+  githubUrl: string | null;
+  siteUrl: string;
+  siteLabel: string;
 }
 
 const locales = {
@@ -47,6 +74,282 @@ async function fetchBlogData() {
   return items;
 }
 
+const getSkillCategories = (dict: Record<string, any>): SkillCategory[] => [
+  {
+    title: dict.skills.frontend,
+    icon: <Code className="h-6 w-6" />,
+    items: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Vue",
+      "Svelte",
+      "Objective-C",
+      "Swift",
+      "Java",
+      "Kotlin",
+      "Dart",
+      "Flutter",
+    ],
+  },
+  {
+    title: dict.skills.backend,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-6 w-6"
+      >
+        <path d="M2 9h20M9 20h6M3 4h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" />
+      </svg>
+    ),
+    items: [
+      "Node.js",
+      "Express",
+      "Java",
+      "Scala",
+      "Firebase",
+      "Supabase",
+      "REST API",
+      "GraphQL API",
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "AWS",
+      "GCP",
+      "Azure",
+      "Netlify",
+      "Vercel",
+      "Cloudflare",
+    ],
+  },
+  {
+    title: dict.skills.tools,
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-6 w-6"
+      >
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+      </svg>
+    ),
+    items: [
+      "OpenAI (ChatGPT)",
+      "Anthropic (Claude)",
+      "Google (Gemini)",
+      "Git",
+      "GitHub",
+      "GitLab",
+      "Docker",
+      "CI/CD",
+      "Jest",
+      "Vitest",
+      "Testing Library",
+      "Vite",
+      "Webpack",
+      "Figma",
+      "Miro",
+      "Agile",
+      "Scrum",
+    ],
+  },
+];
+
+const getExperiences = (dict: Record<string, any>): Experience[] => [
+  {
+    company: "wevnal inc.",
+    role: dict.experience.roles.wevnal.title,
+    period: `2023 - ${dict.experience.present}`,
+    description: dict.experience.roles.wevnal.description,
+    tags: [
+      "Team Leadership",
+      "Scenario Development",
+      "Technical Architecture",
+      "Code Reviews",
+    ],
+    isCurrent: true,
+  },
+  {
+    company: "vcube inc.",
+    role: dict.experience.roles.vcube.title,
+    period: "2021 - 2023",
+    description: dict.experience.roles.vcube.description,
+    tags: ["AWS", "React", "TypeScript", "Frontend Architecture"],
+  },
+  {
+    company: "smaregi inc.",
+    role: dict.experience.roles.smaregi.title,
+    period: "2019 - 2021",
+    description: dict.experience.roles.smaregi.description,
+    tags: ["AWS", "Vue", "React", "TypeScript", "API Architecture"],
+  },
+  {
+    company: "ponos inc.",
+    role: dict.experience.roles.ponos.title,
+    period: "2016 - 2019",
+    description: dict.experience.roles.ponos.description,
+    tags: [
+      "HTML/CSS",
+      "JavaScript",
+      "Vue",
+      "Java/Scala",
+      "PHP",
+      "Responsive Design",
+    ],
+  },
+];
+
+const getProjects = (dict: any): Project[] => [
+  {
+    title: "Tracc",
+    subtitle: dict.projects.items.tracc.subtitle,
+    description: dict.projects.items.tracc.description,
+    image: "/projects/tracc.png?height=280&width=420",
+    tags: [
+      "Flutter",
+      "Dart",
+      "TypeScript",
+      "Node.js",
+      "Firebase",
+      "Cloudflare",
+      "AWS S3",
+      "React (partially)",
+      "Remix (partially)",
+    ],
+    githubUrl: null,
+    siteUrl: "https://brand.tracc.jp/",
+    siteLabel: dict.projects.brandWebsite,
+  },
+  {
+    title: "Luma Portal",
+    subtitle: dict.projects.items.lumaPortal.subtitle,
+    description: dict.projects.items.lumaPortal.description,
+    image: "/projects/luma-portal.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "D1"],
+    githubUrl: null,
+    siteUrl: "https://luma-portal.nekohack.me/",
+    siteLabel: dict.projects.brandWebsite,
+  },
+  {
+    title: "Rocket Form",
+    subtitle: dict.projects.items.rocketForm.subtitle,
+    description: dict.projects.items.rocketForm.description,
+    image: "/projects/rocket-form.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "D1"],
+    githubUrl: null,
+    siteUrl: "https://rocket-form.nekohack.me/",
+    siteLabel: dict.projects.brandWebsite,
+  },
+  {
+    title: "Commitment Board",
+    subtitle: dict.projects.items.commitmentBoard.subtitle,
+    description: dict.projects.items.commitmentBoard.description,
+    image: "/projects/commitment-board.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "D1"],
+    githubUrl: null,
+    siteUrl: "https://commitment-board.nekohack.me",
+    siteLabel: dict.projects.brandWebsite,
+  },
+  {
+    title: "DL (DeepLink Redirect)",
+    subtitle: dict.projects.items.deeplinkRedirect.subtitle,
+    description: dict.projects.items.deeplinkRedirect.description,
+    image: "/projects/deeplink-redirect.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "D1"],
+    githubUrl: null,
+    siteUrl: "https://dl.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
+    title: "IMGO (Image Go)",
+    subtitle: dict.projects.items.imgo.subtitle,
+    description: dict.projects.items.imgo.description,
+    image: "/projects/imgo.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Rust", "Cloudflare", "Cloud Run"],
+    githubUrl: null,
+    siteUrl: "https://imgo.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
+    title: "Newspaper",
+    subtitle: dict.projects.items.newspaper.subtitle,
+    description: dict.projects.items.newspaper.description,
+    image: "/projects/newspaper.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "Google Gemini"],
+    githubUrl: "https://github.com/nekohack/portal",
+    siteUrl: "https://newspaper.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
+    title: "nekohack Portal",
+    subtitle: dict.projects.items.nekohackPortal.subtitle,
+    description: dict.projects.items.nekohackPortal.description,
+    image: "/projects/nekohack-portal.png?height=280&width=420",
+    tags: ["Next.js", "React", "Tailwind CSS", "v0"],
+    githubUrl: "https://github.com/nekohack/portal",
+    siteUrl: "https://nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
+    title: "Multi Post Dash",
+    subtitle: dict.projects.items.multiPostDash.subtitle,
+    description: dict.projects.items.multiPostDash.description,
+    image: "/projects/multi-post-dash.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare"],
+    githubUrl: "https://github.com/jiyuujin/multi-post-dash",
+    siteUrl: "https://multi-post.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
+    title: "Sheer Community",
+    subtitle: dict.projects.items.sheerCommunity.subtitle,
+    description: dict.projects.items.sheerCommunity.description,
+    image: "/projects/sheer-community.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare"],
+    githubUrl: "https://github.com/nekohack/portal",
+    siteUrl: "https://sheer-community.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
+    title: "KARAOKE BINGO",
+    subtitle: dict.projects.items.karaokeBingo.subtitle,
+    description: dict.projects.items.karaokeBingo.description,
+    image: "/projects/karaoke-bingo.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "D1"],
+    githubUrl: "https://github.com/nekohack/portal",
+    siteUrl: "https://karaoke-bingo.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
+    title: "JetPhoto Community",
+    subtitle: dict.projects.items.jetPhotoCommunity.subtitle,
+    description: dict.projects.items.jetPhotoCommunity.description,
+    image: "/projects/jetphoto-community-b747.jpg?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "D1", "AWS S3"],
+    githubUrl: "https://github.com/nekohack/jetphoto-community",
+    siteUrl: "https://jetphoto-community.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+];
+
 export default async function Home({
   params,
 }: {
@@ -61,6 +364,9 @@ export default async function Home({
   const items = await fetchBlogData();
 
   const langPath = resolvedParams.lang?.[0] ? `/${lang}` : "";
+  const skillCategories = getSkillCategories(dict);
+  const experiences = getExperiences(dict);
+  const projects = getProjects(dict);
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 selection:bg-amber-400 selection:text-zinc-950">
@@ -233,147 +539,33 @@ export default async function Home({
             {dict.skills.title}
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Card className="bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-2 rounded-md bg-amber-950/80 text-amber-400 border border-amber-800/50">
-                    <Code className="h-6 w-6" />
+            {skillCategories.map((category) => (
+              <Card
+                key={category.title}
+                className="bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors"
+              >
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-2 rounded-md bg-amber-950/80 text-amber-400 border border-amber-800/50">
+                      {category.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold text-white">
+                      {category.title}
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-semibold text-white">
-                    {dict.skills.frontend}
-                  </h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "HTML",
-                    "CSS",
-                    "JavaScript",
-                    "TypeScript",
-                    "React",
-                    "Vue",
-                    "Svelte",
-                    "Objective-C",
-                    "Swift",
-                    "Java",
-                    "Kotlin",
-                    "Dart",
-                    "Flutter",
-                  ].map((item) => (
-                    <Badge
-                      key={item}
-                      className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-                    >
-                      {item}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-2 rounded-md bg-amber-950/80 text-amber-400 border border-amber-800/50">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-6 w-6"
-                    >
-                      <path d="M2 9h20M9 20h6M3 4h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" />
-                    </svg>
+                  <div className="flex flex-wrap gap-2">
+                    {category.items.map((item) => (
+                      <Badge
+                        key={item}
+                        className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+                      >
+                        {item}
+                      </Badge>
+                    ))}
                   </div>
-                  <h3 className="text-xl font-semibold text-white">
-                    {dict.skills.backend}
-                  </h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Node.js",
-                    "Express",
-                    "Java",
-                    "Scala",
-                    "Firebase",
-                    "Supabase",
-                    "GraphQL",
-                    "REST API",
-                    "MongoDB",
-                    "PostgreSQL",
-                    "AWS",
-                    "GCP",
-                    "Netlify",
-                    "Vercel",
-                    "Cloudflare",
-                  ].map((item) => (
-                    <Badge
-                      key={item}
-                      className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-                    >
-                      {item}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-2 rounded-md bg-amber-950/80 text-amber-400 border border-amber-800/50">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-6 w-6"
-                    >
-                      <path d="M12 20h9" />
-                      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-white">
-                    {dict.skills.tools}
-                  </h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "OpenAI (ChatGPT)",
-                    "Anthropic (Claude)",
-                    "Google (Gemini)",
-                    "Git",
-                    "GitHub",
-                    "GitLab",
-                    "Docker",
-                    "CI/CD",
-                    "Jest",
-                    "Vitest",
-                    "Testing Library",
-                    "Vite",
-                    "Webpack",
-                    "Figma",
-                    "Miro",
-                    "Agile",
-                    "Scrum",
-                  ].map((item) => (
-                    <Badge
-                      key={item}
-                      className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-                    >
-                      {item}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
 
@@ -383,137 +575,42 @@ export default async function Home({
             {dict.experience.title}
           </h2>
           <div className="space-y-8">
-            <div className="relative pl-8 border-l-2 border-zinc-800 pb-8">
-              <div className="absolute w-4 h-4 bg-amber-400 rounded-full -left-[9px] top-1 shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-xl font-semibold text-white">
-                    {dict.experience.roles.wevnal.title}
-                  </h3>
-                  <Badge
-                    variant="outline"
-                    className="border-amber-500/50 text-amber-300"
-                  >
-                    wevnal inc.
-                  </Badge>
-                  <span className="text-sm text-zinc-400">
-                    2023 - {dict.experience.present}
-                  </span>
-                </div>
-                <p className="text-zinc-300">
-                  {dict.experience.roles.wevnal.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    Team Leadership
-                  </Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    Scenario Development
-                  </Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    Technical Architecture
-                  </Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    Code Reviews
-                  </Badge>
-                </div>
-              </div>
-            </div>
-            <div className="relative pl-8 border-l-2 border-zinc-800 pb-8">
-              <div className="absolute w-4 h-4 bg-amber-400 rounded-full -left-[9px] top-1 shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-xl font-semibold text-white">
-                    {dict.experience.roles.vcube.title}
-                  </h3>
-                  <Badge
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-300"
-                  >
-                    vcube inc.
-                  </Badge>
-                  <span className="text-sm text-zinc-400">2021 - 2023</span>
-                </div>
-                <p className="text-zinc-300">
-                  {dict.experience.roles.vcube.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <Badge className="bg-zinc-800 text-zinc-300">AWS</Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">React</Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    TypeScript
-                  </Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    Frontend Architecture
-                  </Badge>
+            {experiences.map((exp, index) => (
+              <div
+                key={exp.company}
+                className={`relative pl-8 border-l-2 border-zinc-800 ${
+                  index !== experiences.length - 1 ? "pb-8" : ""
+                }`}
+              >
+                <div className="absolute w-4 h-4 bg-amber-400 rounded-full -left-[9px] top-1 shadow-[0_0_10px_rgba(245,158,11,0.8)]" />
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-xl font-semibold text-white">
+                      {exp.role}
+                    </h3>
+                    <Badge
+                      variant="outline"
+                      className={
+                        exp.isCurrent
+                          ? "border-amber-500/50 text-amber-300"
+                          : "border-zinc-700 text-zinc-300"
+                      }
+                    >
+                      {exp.company}
+                    </Badge>
+                    <span className="text-sm text-zinc-400">{exp.period}</span>
+                  </div>
+                  <p className="text-zinc-300">{exp.description}</p>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {exp.tags.map((tag) => (
+                      <Badge key={tag} className="bg-zinc-800 text-zinc-300">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="relative pl-8 border-l-2 border-zinc-800 pb-8">
-              <div className="absolute w-4 h-4 bg-amber-400 rounded-full -left-[9px] top-1 shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-xl font-semibold text-white">
-                    {dict.experience.roles.smaregi.title}
-                  </h3>
-                  <Badge
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-300"
-                  >
-                    smaregi inc.
-                  </Badge>
-                  <span className="text-sm text-zinc-400">2019 - 2021</span>
-                </div>
-                <p className="text-zinc-300">
-                  {dict.experience.roles.smaregi.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <Badge className="bg-zinc-800 text-zinc-300">AWS</Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">Vue</Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">React</Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    TypeScript
-                  </Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    API Architecture
-                  </Badge>
-                </div>
-              </div>
-            </div>
-            <div className="relative pl-8 border-l-2 border-zinc-800">
-              <div className="absolute w-4 h-4 bg-amber-400 rounded-full -left-[9px] top-1 shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-xl font-semibold text-white">
-                    {dict.experience.roles.ponos.title}
-                  </h3>
-                  <Badge
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-300"
-                  >
-                    ponos inc.
-                  </Badge>
-                  <span className="text-sm text-zinc-400">2016 - 2019</span>
-                </div>
-                <p className="text-zinc-300">
-                  {dict.experience.roles.ponos.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <Badge className="bg-zinc-800 text-zinc-300">HTML/CSS</Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    JavaScript
-                  </Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">Vue</Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    Java/Scala
-                  </Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">PHP</Badge>
-                  <Badge className="bg-zinc-800 text-zinc-300">
-                    Responsive Design
-                  </Badge>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -523,103 +620,34 @@ export default async function Home({
             {dict.projects.title}
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* Tracc */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/tracc.png?height=280&width=420"
-                  alt="Tracc"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">Tracc</h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.tracc.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.tracc.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      "Flutter",
-                      "Dart",
-                      "TypeScript",
-                      "Node.js",
-                      "Firebase",
-                      "Cloudflare",
-                      "AWS S3",
-                      "React (partially)",
-                      "Remix (partially)",
-                    ].map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-300"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      disabled
-                      className="border-zinc-800 bg-zinc-900 text-zinc-500 disabled:pointer-events-none disabled:opacity-70"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      🔒 {dict.projects.code}
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://brand.tracc.jp/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.brandWebsite}
-                      </Link>
-                    </Button>
-                  </div>
+            {projects.map((project) => (
+              <Card
+                key={project.title}
+                className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors"
+              >
+                <div className="aspect-video relative">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Luma Portal */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/luma-portal.png?height=280&width=420"
-                  alt="Luma Portal"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      Luma Portal
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.lumaPortal.subtitle}
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-zinc-400">
+                        {project.subtitle}
+                      </p>
+                    </div>
+                    <p className="text-sm text-zinc-300">
+                      {project.description}
                     </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.lumaPortal.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["TypeScript", "Node.js", "Cloudflare", "D1"].map(
-                      (tag) => (
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
                         <Badge
                           key={tag}
                           variant="outline"
@@ -627,728 +655,55 @@ export default async function Home({
                         >
                           {tag}
                         </Badge>
-                      ),
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      disabled
-                      className="border-zinc-800 bg-zinc-900 text-zinc-500 disabled:pointer-events-none disabled:opacity-70"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      🔒 {dict.projects.code}
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://luma-portal.nekohack.me/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.brandWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Rocket Form */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/rocket-form.png?height=280&width=420"
-                  alt="Rocket Form"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      Rocket Form
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.rocketForm.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.rocketForm.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["TypeScript", "Node.js", "Cloudflare", "D1"].map(
-                      (tag) => (
-                        <Badge
-                          key={tag}
+                      ))}
+                    </div>
+                    <div className="flex gap-2">
+                      {project.githubUrl ? (
+                        <Button
                           variant="outline"
-                          className="border-zinc-700 text-zinc-300"
+                          size="sm"
+                          asChild
+                          className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
                         >
-                          {tag}
-                        </Badge>
-                      ),
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      disabled
-                      className="border-zinc-800 bg-zinc-900 text-zinc-500 disabled:pointer-events-none disabled:opacity-70"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      🔒 {dict.projects.code}
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://rocket-form.nekohack.me/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.brandWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Commitment Board */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/commitment-board.png?height=280&width=420"
-                  alt="Commitment Board"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      Commitment Board
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.commitmentBoard.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.commitmentBoard.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["TypeScript", "Node.js", "Cloudflare", "D1"].map(
-                      (tag) => (
-                        <Badge
-                          key={tag}
+                          <Link
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Github className="h-4 w-4 mr-2" />
+                            {dict.projects.code}
+                          </Link>
+                        </Button>
+                      ) : (
+                        <Button
                           variant="outline"
-                          className="border-zinc-700 text-zinc-300"
+                          size="sm"
+                          disabled
+                          className="border-zinc-800 bg-zinc-900 text-zinc-500 disabled:pointer-events-none disabled:opacity-70"
                         >
-                          {tag}
-                        </Badge>
-                      ),
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      disabled
-                      className="border-zinc-800 bg-zinc-900 text-zinc-500 disabled:pointer-events-none disabled:opacity-70"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      🔒 {dict.projects.code}
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://commitment-board.nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                          <Github className="h-4 w-4 mr-2" />
+                          🔒 {dict.projects.code}
+                        </Button>
+                      )}
+                      <Button
+                        size="sm"
+                        asChild
+                        className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
                       >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.brandWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* DL */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/deeplink-redirect.png?height=280&width=420"
-                  alt="DL (DeepLink Redirect)"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      DL (DeepLink Redirect)
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.deeplinkRedirect.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.deeplinkRedirect.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["TypeScript", "Node.js", "Cloudflare", "D1"].map(
-                      (tag) => (
-                        <Badge
-                          key={tag}
-                          variant="outline"
-                          className="border-zinc-700 text-zinc-300"
+                        <Link
+                          href={project.siteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          {tag}
-                        </Badge>
-                      ),
-                    )}
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          {project.siteLabel}
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      disabled
-                      className="border-zinc-800 bg-zinc-900 text-zinc-500 disabled:pointer-events-none disabled:opacity-70"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      🔒 {dict.projects.code}
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://dl.nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.productWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* IMGO */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/imgo.png?height=280&width=420"
-                  alt="IMGO (Image Go)"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      IMGO (Image Go)
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.imgo.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.imgo.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      "TypeScript",
-                      "Node.js",
-                      "Rust",
-                      "Cloudflare",
-                      "Cloud Run",
-                    ].map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-300"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      disabled
-                      className="border-zinc-800 bg-zinc-900 text-zinc-500 disabled:pointer-events-none disabled:opacity-70"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      🔒 {dict.projects.code}
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://imgo.nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.productWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Newspaper */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/newspaper.png?height=280&width=420"
-                  alt="nekohack Newspaper"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      nekohack Newspaper
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.newspaper.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.newspaper.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      "TypeScript",
-                      "Node.js",
-                      "Cloudflare",
-                      "Google Gemini",
-                    ].map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-300"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
-                    >
-                      <Link
-                        href="https://github.com/nekohack/portal"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        {dict.projects.code}
-                      </Link>
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://newspaper.nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.productWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Portal */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/nekohack-portal.png?height=280&width=420"
-                  alt="nekohack Portal"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      nekohack Portal
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.nekohackPortal.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.nekohackPortal.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["Next.js", "React", "Tailwind CSS", "v0"].map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-300"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
-                    >
-                      <Link
-                        href="https://github.com/nekohack/portal"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        {dict.projects.code}
-                      </Link>
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.productWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Multi Post Dash */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/multi-post-dash.png?height=280&width=420"
-                  alt="Multi Post Dash"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      Multi Post Dash
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.multiPostDash.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.multiPostDash.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["TypeScript", "Node.js", "Cloudflare"].map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-300"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
-                    >
-                      <Link
-                        href="https://github.com/jiyuujin/multi-post-dash"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        {dict.projects.code}
-                      </Link>
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://multi-post.nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.productWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Sheer Community */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/sheer-community.png?height=280&width=420"
-                  alt="Sheer Community"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      Sheer Community
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.sheerCommunity.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.sheerCommunity.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["TypeScript", "Node.js", "Cloudflare"].map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-300"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
-                    >
-                      <Link
-                        href="https://github.com/nekohack/portal"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        {dict.projects.code}
-                      </Link>
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://sheer-community.nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.productWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Karaoke Bingo */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/karaoke-bingo.png?height=280&width=420"
-                  alt="KARAOKE BINGO"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      KARAOKE BINGO
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.karaokeBingo.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.karaokeBingo.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["TypeScript", "Node.js", "Cloudflare", "D1"].map(
-                      (tag) => (
-                        <Badge
-                          key={tag}
-                          variant="outline"
-                          className="border-zinc-700 text-zinc-300"
-                        >
-                          {tag}
-                        </Badge>
-                      ),
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
-                    >
-                      <Link
-                        href="https://github.com/nekohack/portal"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        {dict.projects.code}
-                      </Link>
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://karaoke-bingo.nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.productWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* JetPhoto */}
-            <Card className="overflow-hidden bg-zinc-900/50 border-zinc-800 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-video relative">
-                <Image
-                  src="/projects/jetphoto-community-b747.jpg?height=280&width=420"
-                  alt="JetPhoto Community"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-white">
-                      JetPhoto Community
-                    </h3>
-                    <p className="text-sm text-zinc-400">
-                      {dict.projects.items.jetPhotoCommunity.subtitle}
-                    </p>
-                  </div>
-                  <p className="text-sm text-zinc-300">
-                    {dict.projects.items.jetPhotoCommunity.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      "TypeScript",
-                      "Node.js",
-                      "Cloudflare",
-                      "D1",
-                      "AWS S3",
-                    ].map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-300"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="border-zinc-700 text-zinc-300 hover:bg-zinc-800"
-                    >
-                      <Link
-                        href="https://github.com/nekohack/jetphoto-community"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        {dict.projects.code}
-                      </Link>
-                    </Button>
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-gradient-to-r from-amber-400 to-orange-500 text-zinc-950 hover:from-amber-300 hover:to-orange-400 font-semibold"
-                    >
-                      <Link
-                        href="https://jetphoto-community.nekohack.me"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        {dict.projects.productWebsite}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            ))}
           </div>
           <div className="mt-8 text-center">
             <Button
