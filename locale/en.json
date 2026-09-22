@@ -64,6 +64,10 @@
         "subtitle": "A platform for centralized event management on Luma",
         "description": "Luma Portal dramatically streamlines event management for conference organizing teams, freeing them from complex administrative tasks so they can focus on core activities."
       },
+      "peatixPortal": {
+        "subtitle": "A platform for centralized event management on Peatix",
+        "description": "Peatix Portal dramatically streamlines event management for conference organizing teams, freeing them from complex administrative tasks so they can focus on core activities."
+      },
       "rocketForm": {
         "subtitle": "Bot management tool",
         "description": "Rocket Form is a tool designed to streamline bot management operations. It simplifies complex tasks and provides an environment where you can focus on truly important work."

@@ -269,6 +269,16 @@ const getProjects = (dict: any): Project[] => [
     siteLabel: dict.projects.brandWebsite,
   },
   {
+    title: "Peatix Portal",
+    subtitle: dict.projects.items.peatixPortal.subtitle,
+    description: dict.projects.items.peatixPortal.description,
+    image: "/projects/peatix-portal.png?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "D1"],
+    githubUrl: null,
+    siteUrl: "https://peatix-portal.nekohack.me/",
+    siteLabel: dict.projects.brandWebsite,
+  },
+  {
     title: "DL (DeepLink Redirect)",
     subtitle: dict.projects.items.deeplinkRedirect.subtitle,
     description: dict.projects.items.deeplinkRedirect.description,
