@@ -359,6 +359,16 @@ const getProjects = (dict: any): Project[] => [
     siteLabel: dict.projects.productWebsite,
   },
   {
+    title: "Media Player",
+    subtitle: dict.projects.items.mediaPlayer.subtitle,
+    description: dict.projects.items.mediaPlayer.description,
+    image: "/projects/media-player.jpg?height=280&width=420",
+    tags: ["TypeScript", "Node.js", "Cloudflare", "D1"],
+    githubUrl: "https://github.com/jiyuujin/private-player",
+    siteUrl: "https://media-player.nekohack.me",
+    siteLabel: dict.projects.productWebsite,
+  },
+  {
     title: "JetPhoto Community",
     subtitle: dict.projects.items.jetPhotoCommunity.subtitle,
     description: dict.projects.items.jetPhotoCommunity.description,

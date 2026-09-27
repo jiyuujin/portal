@@ -108,6 +108,10 @@
         "subtitle": "Karaoke Bingo",
         "description": "A community-integrated tool inspired by the popular song bingo feature on the Sheer Music YouTube channel, designed to make offline meetups and everyday karaoke even more fun."
       },
+      "mediaPlayer": {
+        "subtitle": "Secret Favorite Songs Library",
+        "description": "A web application for seamlessly playing and managing your personalized playlists."
+      },
       "jetPhotoCommunity": {
         "subtitle": "JetPhotos Community",
         "description": "A community-integrated entertainment tool tailored for aviation enthusiasts."

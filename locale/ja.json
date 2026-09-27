@@ -108,6 +108,10 @@
         "subtitle": "カラオケビンゴ",
         "description": "シアーミュージックYouTubeチャンネルの企画でもお馴染みの歌ってビンゴを目指す、オフ会や日常のカラオケをより楽しくするためのコミュニティ連動型ツールです。"
       },
+      "mediaPlayer": {
+        "subtitle": "秘密の推し曲ライブラリ",
+        "description": "自分だけの再生リストをシームレスに再生・管理できるWebアプリケーションです。"
+      },
       "jetPhotoCommunity": {
         "subtitle": "JetPhotos コミュニティ",
         "description": "航空ファン向けのコミュニティ連動型エンタメツールです。"
